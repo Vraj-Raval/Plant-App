@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
             Text(
               'Home',
               style:
-                  TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
+              TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
             ),
             Icon(
               Icons.notifications,
@@ -73,12 +73,12 @@ class _HomeState extends State<Home> {
                             color: Colors.black54.withOpacity(.6)),
                         Expanded(
                             child: TextFormField(
-                          showCursor: false,
-                          decoration: InputDecoration(
-                              hintText: 'Search Plant',
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none),
-                        )),
+                              showCursor: false,
+                              decoration: InputDecoration(
+                                  hintText: 'Search Plant',
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none),
+                            )),
                         Icon(
                           Icons.mic,
                           color: Colors.black54.withOpacity(.5),
@@ -193,7 +193,7 @@ class _HomeState extends State<Home> {
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                        BorderRadius.circular(20)),
                                     child: Text(
                                       ' \$32',
                                       style: TextStyle(
@@ -274,7 +274,7 @@ class _HomeState extends State<Home> {
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                          BorderRadius.circular(20)),
                                       child: Text(
                                         ' \$15',
                                         style: TextStyle(
@@ -357,7 +357,7 @@ class _HomeState extends State<Home> {
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                          BorderRadius.circular(20)),
                                       child: Text(
                                         ' \$25',
                                         style: TextStyle(
@@ -440,7 +440,7 @@ class _HomeState extends State<Home> {
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(20)),
+                                          BorderRadius.circular(20)),
                                       child: Text(
                                         ' \$20',
                                         style: TextStyle(
@@ -476,7 +476,7 @@ class _HomeState extends State<Home> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
-                    scrollDirection: Axis.vertical,
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
@@ -508,7 +508,7 @@ class _HomeState extends State<Home> {
                                       width: size.width,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
 
                                         children: [
                                           Stack(
@@ -534,21 +534,21 @@ class _HomeState extends State<Home> {
                                                   left: 85,
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                     children: [
                                                       Text(
                                                         snapshot.data![
-                                                                index]['plantname']
+                                                        index]['plantname']
                                                             .toString(),
                                                         style:
-                                                            TextStyle(fontSize: 18),
+                                                        TextStyle(fontSize: 18),
                                                       ),
                                                       Text(snapshot.data![index]['plantname'].toString(),
                                                         style: TextStyle(
                                                             fontSize: 25,
                                                             color: Colors.black54,
                                                             fontWeight:
-                                                                FontWeight.bold),
+                                                            FontWeight.bold),
                                                       )
                                                     ],
                                                   )),
@@ -660,7 +660,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<List<dynamic>> getDataFromApi() async {
-     http.Response res = await http
+    http.Response res = await http
         .get(Uri.parse("https://63fb211e2027a45d8d608527.mockapi.io/plant"));
     List<dynamic> jsonData =jsonDecode(res.body.toString());
     return jsonData;

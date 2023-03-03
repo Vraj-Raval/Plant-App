@@ -66,7 +66,7 @@ class _MainFile2State extends State<MainFile2> {
                         child: IconButton(
                             onPressed: () async {
                               try {
-                                await deleteUser('${details['id']}')
+                                await deleteUser('${snapshot.data!['id']}')
                                     .then((value) => setState(() {}));
                                 Navigator.pop(context);
                               } catch (e) {
@@ -81,16 +81,17 @@ class _MainFile2State extends State<MainFile2> {
                     Container(
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Update(
-                              userDetails: UserDetails(
-                                  plantimg: snapshot.data!['plantimg'].toString(),
-                                  plantname: snapshot.data!['plantname'].toString(),
-                                  plantprice: snapshot.data!['plantprice'].toString()
-                              ),
-                            );
-                          }));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MainFile4(userDetails: UserDetails(
+                                  id: details['id'].toString(),
+                                  image:details['plantimg'],
+                                  name:details['plantname'],
+                                  price:details['plantprice'].toString(),),);
+                              },
+                            ),
+                          );
                         },
                         child: Icon(
                           Icons.update,
