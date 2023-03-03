@@ -39,6 +39,8 @@ dependencies:
   animated_bottom_navigation_bar: ^1.1.0+1
   page_transition: ^2.0.9
   curved_navigation_bar: ^1.0.3
+  currency_icons: ^0.3.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
