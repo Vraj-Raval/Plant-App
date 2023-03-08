@@ -91,7 +91,11 @@ class _MainFile2State extends State<MainFile2> {
                                   price:details['plantprice'].toString(),),);
                               },
                             ),
-                          );
+                          ).then((value) {
+                            setState(() {
+
+                            });
+                          },);
                         },
                         child: Icon(
                           Icons.update,

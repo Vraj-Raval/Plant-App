@@ -19,15 +19,15 @@ class UserDetails {
   factory UserDetails.fromJson(Map<String, dynamic> json) {
     return UserDetails(
         id:json['id'],
-        image: json['image'],
-        name: json['name'],
-        price: json['price']);
+        image: json['plantimg'],
+        name: json['plantname'],
+        price: json['plantprice']);
   }
   Map<String,dynamic> toJson() =>{
     'id':id,
-    'image':image,
-    'name': name,
-    'price':price,
+    'plantimg':image,
+    'plantname': name,
+    'plantprice':price,
 
   };
 }
@@ -69,19 +69,19 @@ class _MainFile4State extends State<MainFile4> {
               Card(
                 child: TextFormField(
                   controller: _imagecontroller,
-                  decoration: InputDecoration(labelText: 'image'),
+                  decoration: InputDecoration(labelText: 'plantimg'),
                 ),
               ),
               Card(
                 child: TextFormField(
                   controller: _name,
-                  decoration: InputDecoration(labelText: 'name'),
+                  decoration: InputDecoration(labelText: 'plantname'),
                 ),
               ),
               Card(
                 child: TextFormField(
                   controller: _price,
-                  decoration: InputDecoration(labelText: 'price'),
+                  decoration: InputDecoration(labelText: 'plantprice'),
                 ),
               ),
               Card(
