@@ -27,6 +27,7 @@ class _MainFile2State extends State<MainFile2> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        
         appBar: AppBar(
           iconTheme: IconThemeData(
             color: Colors.black54, //change your color here
@@ -34,83 +35,144 @@ class _MainFile2State extends State<MainFile2> {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
         ),
-        body: FutureBuilder<Map<String, dynamic>>(
-          future: _detailsFuture,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final details = snapshot.data!;
-              return Center(
-                child: Column(
-                  children: [
-                    Image.network(
-                      '${details['plantimg']}',
-                      width: 200,
-                    ),
-                    Text(
-                      "Name:" + '${details['plantname']}',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Container(
-                      child: Text(
-                        "Price:" + '${details['plantprice']}',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                        child: IconButton(
-                            onPressed: () async {
-                              try {
-                                await deleteUser('${snapshot.data!['id']}')
-                                    .then((value) => setState(() {}));
-                                Navigator.pop(context);
-                              } catch (e) {
-                                print(e);
-                              }
-                            },
-                            icon: Icon(
-                              Icons.delete_forever,
-                              color: Colors.red,
-                              size: 30,
-                            ))),
-                    Container(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MainFile4(userDetails: UserDetails(
-                                  id: details['id'].toString(),
-                                  image:details['plantimg'],
-                                  name:details['plantname'],
-                                  price:details['plantprice'].toString(),),);
-                              },
-                            ),
-                          ).then((value) {
-                            setState(() {
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: FutureBuilder<Map<String, dynamic>>(
+            future: _detailsFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final details = snapshot.data!;
+                return Container(
+                  color: Color(0xff296e48).withOpacity(.2),
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
 
-                            });
-                          },);
-                        },
-                        child: Icon(
-                          Icons.update,
-                          size: 30,
-                          color: Colors.blue,
+                          child: Image.network(
+                            '${details['plantimg']}',
+                            width: 500,
+                            height: 500,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15,left: 15),
+                          child: Text(
+                            '${details['plantname']}',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                                color: Color(0xff296e48),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 15,top: 10),
+                          child: Text('Plant Description',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,left: 15,right: 5),
+                          child: Text(
+                            '${details['description']}',
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(.6),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,left: 15),
+                          child: Container(
+                            child: Text(
+                              "Price:" +"\$"+ '${details['plantprice']}',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20,left: 15,right: 15),
+                            child: Container(
+                              width: 320,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                color:Color(0xff296e48),
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(child: Text('Buy Now',style: TextStyle(color: Colors.white,fontSize: 25),)),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30,bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 50),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return MainFile4(
+                                            userDetails: UserDetails(
+                                              id: details['id'].toString(),
+                                              image: details['plantimg'],
+                                              name: details['plantname'],
+                                              price: details['plantprice'].toString(),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ).then(
+                                          (value) {
+                                        setState(() {});
+                                      },
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.sync,
+                                    size: 40,
+                                    color: Color(0xff296e48),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 50),
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        try {
+                                          await deleteUser('${snapshot.data!['id']}')
+                                              .then((value) => setState(() {}));
+                                          Navigator.pop(context);
+                                        } catch (e) {
+                                          print(e);
+                                        }
+                                      },
+                                      icon: Icon(
+                                        Icons.delete_forever_outlined,
+                                        color: Colors.red,
+                                        size: 40,
+                                      ))),
+                            ],
+                          ),
+                        ),
+
+                      ],
                     ),
-                  ],
-                ),
-              );
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
+                  ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
       ),
     );

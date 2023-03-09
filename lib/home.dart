@@ -530,31 +530,19 @@ class _HomeState extends State<Home> {
                                                     child: Image.network(snapshot.data![index]["plantimg"].toString()),
                                                   )),
                                               Positioned(
-                                                  bottom: 20,
+                                                  bottom: 35,
                                                   left: 85,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        snapshot.data![
-                                                        index]['plantname']
-                                                            .toString(),
-                                                        style:
-                                                        TextStyle(fontSize: 18),
-                                                      ),
-                                                      Text(snapshot.data![index]['plantname'].toString(),
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color: Colors.black54,
-                                                            fontWeight:
-                                                            FontWeight.bold),
-                                                      )
-                                                    ],
-                                                  )),
+                                                  child: Text(snapshot.data![index]['plantname'].toString(),
+                                                    style: TextStyle(
+                                                        fontSize: 25,
+                                                        color: Colors.black54,
+                                                        fontWeight:
+                                                        FontWeight.bold),
+                                                  )
+                                              ),
                                               Positioned(
                                                   bottom: 35,
-                                                  left: 255,
+                                                  left: 290,
                                                   child: Text('\$'+ snapshot.data![index]['plantprice'].toString(),
                                                     style: TextStyle(
                                                         fontWeight: FontWeight.bold,
